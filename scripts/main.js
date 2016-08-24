@@ -1,6 +1,6 @@
 var game = document.getElementById('game');
 var counter = document.getElementById('counter');
-var money = 0;
+var money = 720;
 /*global businesses*/
 
 for(var j = 0; j < businesses.length; j++){
@@ -14,10 +14,6 @@ function addListener(business){
             if(business.active == false){
                 move(business);
                 business.active = true;
-                setTimeout(function(){
-                    addMoney(business.profit * business.amount);
-                    business.active = false;
-                }, business.time + 100);
             }
         }
     });
@@ -35,25 +31,32 @@ function addListener(business){
 }
 
 function move(business) {
-    var elem = document.getElementById("lemonadeStandProgress");
+    var elem = document.getElementById(business.id);
     var width = 0;
+    var green = '#83B24F';
     var id = setInterval(frame, business.time/100);
     function frame() {
-        if (width >= 100) {
+        width++; 
+        if(width < 50){
+            elem.style.background = '-webkit-linear-gradient(right, #897D77, #897D77 '+(100-width)+'%, '+green+' 30%, '+green+')';
+        }
+        else if(width<=100){
+            elem.style.background = '-webkit-linear-gradient(left, '+green+', '+green+' '+width+'%, #897D77 30%, #897D77)';
+        }
+        else if(width == 101){
             setTimeout(function(){
-                elem.style.width = '0%';
+                elem.style.background = '#897D77';
+                addMoney(business.profit * business.amount);
+                business.active = false;
                 clearInterval(id);
             }, 100);
-        } else {
-            width++; 
-            elem.style.width = '100%'; 
         }
     }
 }
 
 function updateProfit(business){
     var thisBox = document.getElementById(business.id);
-    thisBox.innerHTML = '<div class="box" id="'+business.id+'"><p class="type">'+business.name+'</p><p class="val">Profit: '+business.profit*business.amount+'</p></div>';
+    thisBox.innerHTML = '<p class="type">'+business.name+'</p><p class="val">Profit: '+business.profit*business.amount+'</p>';
 }
 
 function updateAmount(business){

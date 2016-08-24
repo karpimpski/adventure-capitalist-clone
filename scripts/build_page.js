@@ -17,7 +17,8 @@ function createObject(idVal, nameVal, amountVal, profitVal, costVal, timeVal){
 }
 
 createObject('lemonadeStand','Lemonade Stand', 1, 1, 20, 500);
-createObject('newsPaperDelivery','Newspaper Delivery', 0, 10, 40, 1000);
+createObject('newsPaperDelivery','Newspaper Delivery', 0, 40, 40, 1000);
+createObject('carWash','Car Wash',0,720,720,3000);
 
 for(var i = 0; i < businesses.length; i++){
     var business = businesses[i];
@@ -30,5 +31,4 @@ function addBox(business){
     document.getElementById(business.id).innerHTML += '<p class="type">'+business.name+'</p><p class="val">Profit: '+business.profit+'</p>';
     game.innerHTML += '<div class="second box" id="'+business.id+'Bottom"></div>';
     document.getElementById(business.id+"Bottom").innerHTML += '<p>Amount: '+business.amount+'</p><p>Cost: '+business.cost+'</p>';
-    game.innerHTML += '<div class="progressBar"><span id="'+business.id+'Progress"></span></div>';
 }
