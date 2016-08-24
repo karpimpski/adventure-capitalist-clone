@@ -2,7 +2,7 @@ var game = document.getElementById('game');
 
 var businesses = [];
 
-function createObject(idVal, nameVal, amountVal, profitVal, costVal, timeVal){
+function createObject(idVal, nameVal, amountVal, profitVal, costVal, timeVal, incrementVal){
     var thisObj = {
         id: idVal,
         name: nameVal,
@@ -10,15 +10,16 @@ function createObject(idVal, nameVal, amountVal, profitVal, costVal, timeVal){
         profit: profitVal,
         cost: costVal,
         time: timeVal,
+        increment: incrementVal,
         active: false
     };
     
     businesses.push(thisObj);
 }
 
-createObject('lemonadeStand','Lemonade Stand', 1, 1, 20, 500);
-createObject('newsPaperDelivery','Newspaper Delivery', 0, 40, 40, 1000);
-createObject('carWash','Car Wash',0,720,720,3000);
+createObject('lemonadeStand','Lemonade Stand', 1, 1, 4, 500, 1.07);
+createObject('newsPaperDelivery','Newspaper Delivery', 0, 60, 60, 3000, 1.15);
+createObject('carWash','Car Wash',0,540,720,6000, 1.14);
 
 for(var i = 0; i < businesses.length; i++){
     var business = businesses[i];
