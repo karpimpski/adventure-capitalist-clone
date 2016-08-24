@@ -29,7 +29,11 @@ for(var i = 0; i < businesses.length; i++){
 function addBox(business){
     var rowName = business.id+"Row";
     game.innerHTML += '<div class="box" id="'+business.id+'"><span id="'+business.id+'Progress"></span></div>';
-    document.getElementById(business.id).innerHTML += '<p class="type">'+business.name+'</p><p class="val">Profit: '+business.profit+'</p>';
+    document.getElementById(business.id).innerHTML += '<p class="type">'+business.name+'</p><p class="val">Profit: $'+roundMoney(business.profit)+'</p>';
     game.innerHTML += '<div class="second box" id="'+business.id+'Bottom"></div>';
-    document.getElementById(business.id+"Bottom").innerHTML += '<p>Amount: '+business.amount+'</p><p>Cost: '+business.cost+'</p>';
+    document.getElementById(business.id+"Bottom").innerHTML += '<p>Amount: '+business.amount+'</p><p>Cost: $'+roundMoney(business.cost)+'</p>';
+}
+
+function roundMoney(m){
+    return (Math.round(m * 100) / 100).toFixed(2)
 }

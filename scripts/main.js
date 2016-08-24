@@ -1,6 +1,6 @@
 var game = document.getElementById('game');
 var counter = document.getElementById('counter');
-var money = 60;
+var money = 0;
 displayMoney();
 /*global businesses*/
 
@@ -63,11 +63,11 @@ function move(business) {
 
 function updateProfit(business){
     var thisBox = document.getElementById(business.id);
-    thisBox.innerHTML = '<p class="type">'+business.name+'</p><p class="val">Profit: '+business.profit*business.amount+'</p>';
+    thisBox.innerHTML = '<p class="type">'+business.name+'</p><p class="val">Profit: $'+roundMoney(business.profit*business.amount)+'</p>';
 }
 
 function updateAmount(business){
-    document.getElementById(business.id+"Bottom").innerHTML = '<p>Amount: '+business.amount+'</p><p>Cost: '+business.cost+'</p>';
+    document.getElementById(business.id+"Bottom").innerHTML = '<p>Amount: '+business.amount+'</p><p>Cost: $'+roundMoney(business.cost)+'</p>';
 }
 
 function addMoney(val){
@@ -76,5 +76,5 @@ function addMoney(val){
 }
 
 function displayMoney(){
-    document.getElementById('counter').innerHTML = "Money: " + roundMoney(money);
+    document.getElementById('counter').innerHTML = "Money: $" + roundMoney(money);
 }
