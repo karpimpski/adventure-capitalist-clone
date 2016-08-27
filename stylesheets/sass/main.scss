@@ -33,14 +33,14 @@ body{
 
 .box-mouse-in{
   animation-name: dark;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   background-color: darken($box-bg, 4%);
 }
 
 .box-mouse-out{
   animation-name: light;
-  animation-duration: 1s;
-  background-color: $box-bg;
+  animation-duration: 0.5s;
+  background-color: $box-bg !important;
 }
 
 @keyframes light{
@@ -56,7 +56,6 @@ body{
   from{
     background-color: $box-bg;
   }
-  
   to{
     background-color: darken($box-bg, 4%);
   }

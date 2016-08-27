@@ -23,13 +23,13 @@ body {
 
 .box-mouse-in {
   animation-name: dark;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   background-color: #7e736d; }
 
 .box-mouse-out {
   animation-name: light;
-  animation-duration: 1s;
-  background-color: #897D77; }
+  animation-duration: 0.5s;
+  background-color: #897D77 !important; }
 
 @keyframes light {
   from {

@@ -60,19 +60,14 @@ function moneyString(m){
 for(var j = 0; j < boxes.length; j++){
     boxes[j].addEventListener('mouseover',function(){
         if(this.className.includes('box-mouse-in') == false){
-            this.className = this.className.replace(/\bbox-mouse-out\b/,'');
+            this.className = this.className.replace(/\bbox-mouse-out\b/g,'');
             this.className += ' box-mouse-in';
         }
     });
     boxes[j].addEventListener('mouseout',function(){
         if(this.className.includes('box-mouse-in')){
-            this.className = this.className.replace(/\bbox-mouse-in\b/,'');
+            this.className = this.className.replace(/\bbox-mouse-in\b/g,'');
             this.className += ' box-mouse-out';
         }
-    });
-    boxes[j].addEventListener('click',function(){
-        this.className = this.className.replace(/\bbox-mouse-in\b/,'');
-        this.className = this.className.replace(/\bbox-mouse-out\b/,'');
-        this.className += ' box-mouse-in';
     });
 }
