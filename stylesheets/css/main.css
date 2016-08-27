@@ -15,13 +15,32 @@ body {
   width: 50%; }
 
 .box {
-  justify-content: center;
   background: #897D77;
   color: #403332;
   border-radius: 10px;
   cursor: pointer;
   width: 100%; }
 
+.box-mouse-in {
+  animation-name: dark;
+  animation-duration: 1s;
+  background-color: #7e736d; }
+
+.box-mouse-out {
+  animation-name: light;
+  animation-duration: 1s;
+  background-color: #897D77; }
+
+@keyframes light {
+  from {
+    background-color: #7e736d; }
+  to {
+    background-color: #897D77; } }
+@keyframes dark {
+  from {
+    background-color: #897D77; }
+  to {
+    background-color: #7e736d; } }
 .box p {
   display: flex;
   justify-content: center; }
