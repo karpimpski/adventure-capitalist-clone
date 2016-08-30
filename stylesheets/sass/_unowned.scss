@@ -1,0 +1,31 @@
+$unowned-bg: gray;
+
+.unowned-mouse-in{
+  animation-name: unowned-dark;
+  animation-duration: $time;
+  background-color: darken($unowned-bg, $percent) !important;
+}
+
+.unowned-mouse-out{
+  animation-name: unowned-light;
+  animation-duration: $time;
+  background-color: $unowned-bg !important;
+}
+
+@keyframes unowned-light{
+  from{
+    background-color: darken($unowned-bg, $percent);
+  }
+  to{
+    background-color: $unowned-bg;
+  }
+}
+
+@keyframes unowned-dark {
+  from{
+    background-color: $unowned-bg;
+  }
+  to{
+    background-color: darken($unowned-bg, $percent);
+  }
+}

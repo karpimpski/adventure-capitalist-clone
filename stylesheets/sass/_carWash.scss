@@ -1,0 +1,31 @@
+$carWash-bg: #68B7EF;
+
+.carWash-mouse-in{
+  animation-name: carWash-dark;
+  animation-duration: $time;
+  background-color: darken($carWash-bg, $percent) !important;
+}
+
+.carWash-mouse-out{
+  animation-name: carWash-light;
+  animation-duration: $time;
+  background-color: $carWash-bg !important;
+}
+
+@keyframes carWash-light{
+  from{
+    background-color: darken($carWash-bg, $percent);
+  }
+  to{
+    background-color: $carWash-bg;
+  }
+}
+
+@keyframes carWash-dark {
+  from{
+    background-color: $carWash-bg;
+  }
+  to{
+    background-color: darken($carWash-bg, $percent);
+  }
+}

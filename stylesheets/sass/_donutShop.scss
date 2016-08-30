@@ -1,0 +1,31 @@
+$donutShop-bg: #EB9034;
+
+.donutShop-mouse-in{
+  animation-name: donutShop-dark;
+  animation-duration: $time;
+  background-color: darken($donutShop-bg, $percent) !important;
+}
+
+.donutShop-mouse-out{
+  animation-name: donutShop-light;
+  animation-duration: $time;
+  background-color: $donutShop-bg !important;
+}
+
+@keyframes donutShop-light{
+  from{
+    background-color: darken($donutShop-bg, $percent);
+  }
+  to{
+    background-color: $donutShop-bg;
+  }
+}
+
+@keyframes donutShop-dark {
+  from{
+    background-color: $donutShop-bg;
+  }
+  to{
+    background-color: darken($donutShop-bg, $percent);
+  }
+}

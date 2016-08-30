@@ -1,10 +1,6 @@
-var game = document.querySelector('#game');
-var counter = document.querySelector('#counter');
-var boxColor = '#897D77';
-var darkBoxColor = '#7e736d';
-var money = 0;
+var money = 1000000;
 displayMoney();
-/*global businesses*/
+/*global businesses setColor*/
 
 for(var j = 0; j < businesses.length; j++){
     var business = businesses[j];
@@ -22,20 +18,18 @@ function addListener(business){
     });
         
     document.querySelector("#"+business.id+"Bottom").addEventListener('click', function(){
+        var thisBox = document.querySelector("#"+business.id+"");
         if(business.cost <= money){
-            money -= business.cost;
-            displayMoney();
-            business.amount++;
-            business.cost = roundMoney(business.cost * business.increment);
-            updateAmount(business);
-            updateProfit(business);
-            
+            if(thisBox.className.includes('unowned')){
+                thisBox.className = thisBox.className.replace(/\bunowned\b/g,'');
+            }
+            updateBusiness(business);
         }
     });
 }
 
 function roundMoney(m){
-    return (Math.round(m * 100) / 100).toFixed(2)
+    return (Math.round(m * 100) / 100).toFixed(2);
 }
 
 function move(business) {
@@ -44,7 +38,7 @@ function move(business) {
     var green = '#83B24F';
     var id = setInterval(frame, business.time/100);
     function frame() {
-        var c = '#897D77';
+        var c = business.darkColor;
         width++;
         if(elem.className.includes("box-mouse-in")){
             c = '#7e736d';
@@ -57,7 +51,7 @@ function move(business) {
         }
         else if(width == 101){
             setTimeout(function(){
-                elem.style.background = darkBoxColor;
+                elem.style.background = c;
                 addMoney(business.profit * business.amount);
                 business.active = false;
                 clearInterval(id);
@@ -66,12 +60,14 @@ function move(business) {
     }
 }
 
-function updateProfit(business){
+function updateBusiness(business){
     var thisBox = document.querySelector("#"+business.id);
+    money -= business.cost;
+    displayMoney();
+    business.amount++;
+    business.cost = roundMoney(business.cost * business.increment);
+    setColor(business, thisBox);
     thisBox.innerHTML = '<p class="type">'+business.name+'</p><p class="val">Profit: $'+moneyString(business.profit*business.amount)+'</p>';
-}
-
-function updateAmount(business){
     document.querySelector("#"+business.id+"Bottom").innerHTML = '<p>Amount: '+business.amount+'</p><p>Cost: $'+moneyString(business.cost)+'</p>';
 }
 

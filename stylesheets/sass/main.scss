@@ -1,7 +1,8 @@
 $body-bg: #746862;
 $ff: 'Cinzel', serif;
-$box-bg: #897D77;
 $box-color: #403332;
+
+@import 'animations';
 
 body{
   background: $body-bg;
@@ -13,6 +14,7 @@ body{
 
 .row{
   display: flex;
+  margin-bottom: 15px;
 }
 
 .center{
@@ -24,41 +26,16 @@ body{
 }
 
 .box{
-  background: $box-bg;
   color: $box-color;
   border-radius: 10px;
   cursor: pointer;
-  width: 100%;
+  width: 20%;
+  font-size: 10px;
+  margin-right: 5px;
 }
 
-.box-mouse-in{
-  animation-name: dark;
-  animation-duration: 0.5s;
-  background-color: darken($box-bg, 4%);
-}
-
-.box-mouse-out{
-  animation-name: light;
-  animation-duration: 0.5s;
-  background-color: $box-bg !important;
-}
-
-@keyframes light{
-  from{
-    background-color: darken($box-bg, 4%);
-  }
-  to{
-    background-color: $box-bg;
-  }
-}
-
-@keyframes dark {
-  from{
-    background-color: $box-bg;
-  }
-  to{
-    background-color: darken($box-bg, 4%);
-  }
+.unowned{
+  background: $unowned-bg;
 }
 
 .box p{

@@ -1,0 +1,31 @@
+$newsPaperDelivery-bg: #E2DDDA;
+
+.newsPaperDelivery-mouse-in{
+  animation-name: newsPaperDelivery-dark;
+  animation-duration: $time;
+  background-color: darken($newsPaperDelivery-bg, $percent) !important;
+}
+
+.newsPaperDelivery-mouse-out{
+  animation-name: newsPaperDelivery-light;
+  animation-duration: $time;
+  background-color: $newsPaperDelivery-bg !important;
+}
+
+@keyframes newsPaperDelivery-light{
+  from{
+    background-color: darken($newsPaperDelivery-bg, $percent);
+  }
+  to{
+    background-color: $newsPaperDelivery-bg;
+  }
+}
+
+@keyframes newsPaperDelivery-dark {
+  from{
+    background-color: $newsPaperDelivery-bg;
+  }
+  to{
+    background-color: darken($newsPaperDelivery-bg, $percent);
+  }
+}

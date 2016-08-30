@@ -1,0 +1,35 @@
+$lemonadeStand-bg: #F2DC38;
+
+#lemonadeStand, #lemonadeStandBottom{
+  background: $lemonadeStand-bg;
+}
+
+.lemonadeStand-mouse-in{
+  animation-name: lemonadeStand-dark;
+  animation-duration: $time;
+  background-color: darken($lemonadeStand-bg, $percent) !important;
+}
+
+.lemonadeStand-mouse-out{
+  animation-name: lemonadeStand-light;
+  animation-duration: $time;
+  background-color: $lemonadeStand-bg !important;
+}
+
+@keyframes lemonadeStand-light{
+  from{
+    background-color: darken($lemonadeStand-bg, $percent);
+  }
+  to{
+    background-color: $lemonadeStand-bg;
+  }
+}
+
+@keyframes lemonadeStand-dark {
+  from{
+    background-color: $lemonadeStand-bg;
+  }
+  to{
+    background-color: darken($lemonadeStand-bg, $percent);
+  }
+}

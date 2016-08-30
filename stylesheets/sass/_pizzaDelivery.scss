@@ -1,0 +1,31 @@
+$pizzaDelivery-bg: #AF2705;
+
+.pizzaDelivery-mouse-in{
+  animation-name: pizzaDelivery-dark;
+  animation-duration: $time;
+  background-color: darken($pizzaDelivery-bg, $percent) !important;
+}
+
+.pizzaDelivery-mouse-out{
+  animation-name: pizzaDelivery-light;
+  animation-duration: $time;
+  background-color: $pizzaDelivery-bg !important;
+}
+
+@keyframes pizzaDelivery-light{
+  from{
+    background-color: darken($pizzaDelivery-bg, $percent);
+  }
+  to{
+    background-color: $pizzaDelivery-bg;
+  }
+}
+
+@keyframes pizzaDelivery-dark {
+  from{
+    background-color: $pizzaDelivery-bg;
+  }
+  to{
+    background-color: darken($pizzaDelivery-bg, $percent);
+  }
+}
