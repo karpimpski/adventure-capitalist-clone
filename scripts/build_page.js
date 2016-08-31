@@ -19,6 +19,7 @@ function createObject(idVal, nameVal, amountVal, costVal, profitVal, timeVal, in
         increment: incrementVal,
         color: colorVal,
         darkColor: darkColorVal,
+        listening: false,
         active: false
     };
     

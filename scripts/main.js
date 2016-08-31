@@ -8,28 +8,40 @@ for(var j = 0; j < businesses.length; j++){
 }
 
 function addListener(business){
-    document.querySelector("#"+business.id).addEventListener('click', function(){
-        if(business.amount > 0){
-            if(business.active == false){
-                move(business);
-                business.active = true;
+    if(business.listening == false){
+        document.querySelector("#"+business.id).addEventListener('click', function(){
+            if(business.amount > 0){
+                if(business.active == false){
+                    move(business);
+                    business.active = true;
+                }
             }
-        }
-    });
-        
-    document.querySelector("#"+business.id+"Bottom").addEventListener('click', function(){
-        var thisBox = document.querySelector("#"+business.id+"");
-        if(business.cost <= money){
-            if(thisBox.className.includes('unowned')){
-                thisBox.className = thisBox.className.replace(/\bunowned\b/g,'');
+        });
+            
+        document.querySelector("#"+business.id+"Bottom").addEventListener('click', function(){
+            var thisBox = document.querySelector("#"+business.id+"");
+            if(business.cost <= money){
+                if(thisBox.className.includes('unowned')){
+                    thisBox.className = thisBox.className.replace(/\bunowned\b/g,'');
+                }
+                money -= business.cost;
+                displayMoney();
+                business.amount++;
+                business.cost = roundMoney(business.cost * business.increment);
+                setColor(business, thisBox);
+                
+                updateAmount(business);
+                updateProfit(business);
+                
             }
-            updateBusiness(business);
-        }
-    });
+        });
+    }
+    
+    business.listening = true;
 }
 
 function roundMoney(m){
-    return (Math.round(m * 100) / 100).toFixed(2);
+    return (Math.round(m * 100) / 100).toFixed(2)
 }
 
 function move(business) {
@@ -60,14 +72,12 @@ function move(business) {
     }
 }
 
-function updateBusiness(business){
+function updateProfit(business){
     var thisBox = document.querySelector("#"+business.id);
-    money -= business.cost;
-    displayMoney();
-    business.amount++;
-    business.cost = roundMoney(business.cost * business.increment);
-    setColor(business, thisBox);
     thisBox.innerHTML = '<p class="type">'+business.name+'</p><p class="val">Profit: $'+moneyString(business.profit*business.amount)+'</p>';
+}
+
+function updateAmount(business){
     document.querySelector("#"+business.id+"Bottom").innerHTML = '<p>Amount: '+business.amount+'</p><p>Cost: $'+moneyString(business.cost)+'</p>';
 }
 
