@@ -20,12 +20,15 @@ function createObject(idVal, nameVal, amountVal, costVal, profitVal, timeVal, in
         color: colorVal,
         darkColor: darkColorVal,
         listening: false,
+        animated: false,
         active: false
     };
     
     businesses.push(thisObj);
     addBox(thisObj);
 }
+
+businesses[0].animated = true;
 
 function addBox(business){
     if(business.amount >= 1){
@@ -140,9 +143,12 @@ function moneyString(m){
 }
 
 function setColor(thisBusiness, thisBox){
-    thisBox.style.background = thisBusiness.color;
-    document.querySelector("#"+thisBusiness.id+"Bottom").style.background = thisBusiness.color;
-    setAnimations();
+    if(thisBusiness.animated == false){
+        thisBox.style.background = thisBusiness.color;
+        document.querySelector("#"+thisBusiness.id+"Bottom").style.background = thisBusiness.color;
+        setAnimations();
+        thisBusiness.animated = true;
+    }
 }
 
 function removeUnownedClass(thisBox){

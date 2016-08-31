@@ -1,4 +1,4 @@
-var money = 1000000;
+var money = 0;
 displayMoney();
 /*global businesses setColor*/
 
