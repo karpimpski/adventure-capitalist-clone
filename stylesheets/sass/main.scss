@@ -1,6 +1,7 @@
 $body-bg: #746862;
 $ff: 'Cinzel', serif;
 $box-color: #403332;
+$box-height: 50px;
 
 @import 'animations';
 
@@ -32,6 +33,14 @@ body{
   width: 20%;
   font-size: 10px;
   margin-right: 5px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
+}
+
+.box p{
+  margin: 0;
+  padding: 0;
 }
 
 .unowned{
@@ -45,4 +54,20 @@ body{
 
 .second{
   margin-top: -10px;
+}
+
+$circleSize: 30px;
+
+.circle{
+  position: absolute;
+  width: $circleSize;
+  height: $circleSize;
+  border-radius: 100%;
+  background: white;
+  margin-left: -40px;
+  margin-top: 30px;
+  border: 2px solid white;
+  text-align: center;
+  line-height: $circleSize - 30;
+  cursor: pointer;
 }

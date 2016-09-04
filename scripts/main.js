@@ -35,6 +35,26 @@ function addListener(business){
                 
             }
         });
+        
+        document.querySelector("#"+business.id+"Amount").addEventListener('click', function(){
+            alert('hello');
+            
+            var thisBox = document.querySelector("#"+business.id+"");
+            if(business.cost <= money){
+                if(thisBox.className.includes('unowned')){
+                    thisBox.className = thisBox.className.replace(/\bunowned\b/g,'');
+                }
+                money -= business.cost;
+                displayMoney();
+                business.amount++;
+                business.cost = roundMoney(business.cost * business.increment);
+                setColor(business, thisBox);
+                
+                updateAmount(business);
+                updateProfit(business);
+                
+            }
+        });
     }
     
     business.listening = true;
@@ -73,12 +93,12 @@ function move(business) {
 }
 
 function updateProfit(business){
-    var thisBox = document.querySelector("#"+business.id);
-    thisBox.innerHTML = '<p class="type">'+business.name+'</p><p class="val">Profit: $'+moneyString(business.profit*business.amount)+'</p>';
+    document.querySelector("#"+business.id).querySelector('.val').innerHTML = moneyString(business.profit*business.amount);
 }
 
 function updateAmount(business){
-    document.querySelector("#"+business.id+"Bottom").innerHTML = '<p>Amount: '+business.amount+'</p><p>Cost: $'+moneyString(business.cost)+'</p>';
+    document.querySelector("#"+business.id+"Bottom").innerHTML = '<p>Amount: '+business.amount+' ($'+moneyString(business.cost)+')</p>';
+    document.querySelector("#"+business.id+"Amount").innerHTML = '<p>'+business.amount+'</p>';
 }
 
 function addMoney(val){

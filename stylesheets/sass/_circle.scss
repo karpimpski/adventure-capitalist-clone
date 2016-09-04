@@ -1,0 +1,15 @@
+.increaseSize{
+    animation-name: increase;
+    animation-duration: 5s;
+}
+
+@keyframes increase{
+  from{
+    width: 30px;
+    height: 30px;
+  }
+  to{
+    width: 50px;
+    height: 50px;
+  }
+}

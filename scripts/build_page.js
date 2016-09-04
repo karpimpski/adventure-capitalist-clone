@@ -30,6 +30,54 @@ function createObject(idVal, nameVal, amountVal, costVal, profitVal, timeVal, in
 
 businesses[0].animated = true;
 
+setCircleListeners();
+function setCircleListeners(){
+    for(var l = 0; l < businesses.length; l++){
+        setCircleListener(businesses[l]);
+    }
+}
+
+function setCircleListener(bus){
+    var thisCircle = document.querySelector("#"+bus.id+"Amount");
+    thisCircle.addEventListener("mouseover", function(){
+        if(bus.amount >= 1){
+            var thisId = findId(bus);
+        }
+        else{
+            thisId = 'unowned';
+        }
+        
+        if(thisCircle.className.includes(thisId+'-mouse-in') == false){
+            var re = new RegExp(thisId+"-mouse-in","g");
+            thisCircle.className = thisCircle.className.replace(re,'');
+            thisCircle.className += thisId+'-mouse-out';
+            
+        }
+    });
+    
+    thisCircle.addEventListener("mouseout", function(){
+        var thisId = findId(bus);
+        
+        if(thisCircle.className.includes(thisId+'-mouse-in') == false){
+            var re = new RegExp(thisId+"-mouse-in","g");
+            thisCircle.className = thisCircle.className.replace(re,'');
+            thisCircle.className += thisId+'-mouse-out';
+        }
+    });
+    
+    addListener(bus, thisCircle);
+}
+
+function showCost(bus){
+    var thisCircle = document.querySelector("#"+bus.id+"Amount");
+    thisCircle.innerHTML = '<p>'+moneyString(bus.cost)+'</p>';
+}
+
+function showAmount(bus){
+    var thisCircle = document.querySelector("#"+bus.id+"Amount");
+    thisCircle.innerHTML = '<p>'+bus.amount+'</p>';
+}
+
 function addBox(business){
     if(business.amount >= 1){
         var classList = 'box';
@@ -38,9 +86,20 @@ function addBox(business){
         classList = 'unowned box';
     }
     document.querySelector("#firstRow").innerHTML += '<div class="'+classList+' " id="'+business.id+'"><span id="'+business.id+'Progress"></span></div>';
-    document.querySelector("#"+business.id).innerHTML += '<p class="type">'+business.name+'</p><p class="val">Profit: $'+moneyString(business.profit)+'</p>';
+    document.querySelector("#firstRow").innerHTML += '<div class="circle " id="'+business.id+'Amount" style="background: '+chooseCircleColor(business)+';"></div>';
+    document.querySelector("#"+business.id+"Amount").innerHTML = "<p>"+business.amount+"</p>"
+    document.querySelector("#"+business.id).innerHTML += '<p class="type">'+business.name+' ($<span class="val">'+moneyString(business.profit)+'</span>)</p>';
     document.querySelector("#secondRow").innerHTML += '<div class="second '+classList+' " id="'+business.id+'Bottom"></div>';
-    document.querySelector("#"+business.id+"Bottom").innerHTML += '<p>Amount: '+business.amount+'</p><p>Cost: $'+moneyString(business.cost)+'</p>';
+    document.querySelector("#"+business.id+"Bottom").innerHTML += '<p>Amount: '+business.amount+' ($'+moneyString(business.cost)+')</p>';
+}
+
+function chooseCircleColor(business){
+    if(business.amount > 0){
+        return business.color;
+    }
+    else{
+        return 'gray';
+    }
 }
 
 function setAnimations(){
@@ -158,4 +217,13 @@ function removeUnownedClass(thisBox){
     thisBox.className = thisBox.className.replace(unownedReg, '');
     thisBox.className = thisBox.className.replace(unownedOutReg, '');
     thisBox.className = thisBox.className.replace(unownedInReg, '');
+}
+
+function findId(bus){
+    if(bus.amount >= 1){
+        return bus.id;
+    }
+    else{
+        return 'unowned';
+    }
 }
